@@ -5,9 +5,11 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 const Home: NextPage = () => {
   const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
+  const { data: tickets } = trpc.useQuery(["example.getAll"]);
+
   const { data } = useSession();
 
-  console.log(data);
+  console.log(tickets);
 
   const testar = () => {
     if (data) {
@@ -46,6 +48,14 @@ const Home: NextPage = () => {
         <div className="pt-6 text-2xl text-blue-500 flex justify-center items-center w-full">
           {hello.data ? <p>{hello.data.greeting}</p> : <p>Loading..</p>}
         </div>
+
+        {tickets?.map((ticket) => {
+          return (
+            <>
+              <div>{ticket.description}</div>
+            </>
+          );
+        })}
       </main>
     </>
   );
