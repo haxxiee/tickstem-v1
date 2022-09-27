@@ -10,8 +10,13 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Example {
-    id String @id @map("_id") @default(cuid() )
+model Ticket {
+    id              String  @id @map("_id") @default(cuid())
+    userId          String
+    product         String
+    description     String
+    status          Status  @default(NEW)
+    user            User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 // Necessary for Next auth
@@ -47,14 +52,21 @@ model User {
     email         String?   @unique
     emailVerified DateTime?
     image         String?
+    tickets       Ticket[]
     accounts      Account[]
     sessions      Session[]
 }
 
-model VerificationToken {
-    identifier String   @id @map("_id")
-    token      String   @unique
-    expires    DateTime
+// model VerificationToken {
+//     identifier String   @id @map("_id")
+//     token      String   @unique
+//     expires    DateTime
 
-    @@unique([identifier, token])
+//     @@unique([identifier, token])
+// }
+
+enum Status {
+  NEW
+  OPEN
+  CLOSED
 }
