@@ -1,32 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { trpc } from "../utils/trpc";
-import { signIn, signOut, useSession } from "next-auth/react";
+// import { signIn, signOut, useSession } from "next-auth/react";
 
 const Home: NextPage = () => {
-  const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
+  // const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
   const { data: tickets } = trpc.useQuery(["example.getAll"]);
 
-  const { data } = useSession();
-
-  const testar = () => {
-    if (data) {
-      return (
-        <>
-          <button className="border-2" onClick={() => signOut()}>
-            SIGN OUT
-          </button>
-        </>
-      );
-    }
-    return (
-      <>
-        <button className="border-2" onClick={() => signIn()}>
-          SIGN IN
-        </button>
-      </>
-    );
-  };
+  // const { data } = useSession();
 
   return (
     <>
@@ -37,7 +18,6 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="container mx-auto flex flex-col items-center justify-center min-h-full p-4">
-        {testar()}
         <h1 className="text-5xl md:text-[5rem] leading-normal font-extrabold text-gray-700">
           Create <span className="text-purple-300">T3</span> App
         </h1>
@@ -49,9 +29,9 @@ const Home: NextPage = () => {
 
         {tickets?.map((ticket) => {
           return (
-            <>
+            <div key={ticket.id}>
               <div>{ticket.description}</div>
-            </>
+            </div>
           );
         })}
       </main>
