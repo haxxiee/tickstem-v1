@@ -2,14 +2,8 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { unstable_getServerSession } from "next-auth";
 import { authOptions } from "../pages/api/auth/[...nextauth]";
-import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-  // const hello = trpc.useQuery(["example.hello", { text: "from tRPC" }]);
-  const { data: tickets } = trpc.useQuery(["example.getAll"]);
-
-  // const { data } = useSession();
-
   return (
     <>
       <Head>
@@ -26,17 +20,6 @@ const Home: NextPage = () => {
         <p className="text-xl text-gray-700">Sign in to report your problem</p>
 
         <div className="grid gap-3 pt-3 mt-3 text-center md:grid-cols-2 lg:w-2/3"></div>
-        {/* <div className="pt-6 text-2xl text-blue-500 flex justify-center items-center w-full">
-          {hello.data ? <p>{hello.data.greeting}</p> : <p>Loading..</p>}
-        </div> */}
-
-        {/* {tickets?.map((ticket) => {
-          return (
-            <div key={ticket.id}>
-              <div>{ticket.description}</div>
-            </div>
-          );
-        })} */}
       </main>
     </>
   );
