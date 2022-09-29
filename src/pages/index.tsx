@@ -9,8 +9,6 @@ const Home: NextPage = () => {
 
   const { data } = useSession();
 
-  console.log(tickets);
-
   const testar = () => {
     if (data) {
       return (
