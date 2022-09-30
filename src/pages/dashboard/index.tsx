@@ -3,7 +3,7 @@ import Link from "next/link";
 import { trpc } from "../../utils/trpc";
 import { requireAuthentication } from "../../utils/requireAuthentication";
 import { SessionObject } from "../../types/session";
-import Loading from "../../../components/Loading";
+import Loading from "../../components/Loading";
 
 interface Session {
   session: SessionObject[];
