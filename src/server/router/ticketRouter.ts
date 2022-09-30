@@ -37,4 +37,21 @@ export const ticketRouter = createRouter()
       });
       return ticket;
     },
+  })
+  .mutation("createTicket", {
+    input: z.object({
+      userId: z.string(),
+      product: z.string(),
+      description: z.string(),
+    }),
+    async resolve({ input, ctx }) {
+      const ticket = await ctx.prisma.ticket.create({
+        data: {
+          userId: input.userId,
+          product: input.product,
+          description: input.description,
+        },
+      });
+      return ticket;
+    },
   });

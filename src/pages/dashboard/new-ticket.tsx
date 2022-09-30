@@ -1,15 +1,25 @@
 import { GetServerSideProps, NextPage } from "next";
+import { useState } from "react";
 // import Loading from "../../../components/Loading";
+import { trpc } from "../../utils/trpc";
+
 import { Session, SessionObject } from "../../types/session";
 import { requireAuthentication } from "../../utils/requireAuthentication";
-import { useState } from "react";
 
 const NewTicket: NextPage<SessionObject> = ({ currentSession: { user } }) => {
+  const createTicket = trpc.useMutation(["ticketRouter.createTicket"]);
+
   const [product, setProduct] = useState("iPhone");
   const [description, setDescription] = useState("");
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    createTicket.mutateAsync({
+      userId: user.id,
+      product: product,
+      description: description,
+    });
 
     setDescription("");
   };
@@ -91,6 +101,7 @@ const NewTicket: NextPage<SessionObject> = ({ currentSession: { user } }) => {
           <textarea
             className="bg-gray-100 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
             id="description"
+            placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
