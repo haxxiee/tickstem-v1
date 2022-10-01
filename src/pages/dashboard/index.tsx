@@ -1,6 +1,5 @@
 import { GetServerSideProps, NextPage } from "next";
 import Link from "next/link";
-import { trpc } from "../../utils/trpc";
 import { requireAuthentication } from "../../utils/requireAuthentication";
 import { SessionObject } from "../../types/session";
 import Loading from "../../components/Loading";
@@ -10,10 +9,6 @@ interface Session {
 }
 
 const Dashboard: NextPage<SessionObject> = ({ currentSession: { user } }) => {
-  const ticketId = "cl8mvxxsf0000hcuthbj47wxp";
-  const { data } = trpc.useQuery(["ticketRouter.getAll"]);
-  const ticket = trpc.useQuery(["ticketRouter.getSingle", { ticketId }]);
-
   if (!user) {
     return <Loading />;
   }
