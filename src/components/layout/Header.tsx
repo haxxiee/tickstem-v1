@@ -10,9 +10,9 @@ const Header: FC<unknown> = () => {
       <div className="text-xl font-extrabold text-slate-600">TICKSTEM</div>
 
       {data ? (
-        <Headerbutton text={"Sign out"} icon={false} signed={true} />
+        <Headerbutton text={"Sign out"} signed={true} />
       ) : (
-        <Headerbutton text={"Sign in w/"} icon={true} signed={false} />
+        <Headerbutton text={"Sign in"} signed={false} />
       )}
     </div>
   );
