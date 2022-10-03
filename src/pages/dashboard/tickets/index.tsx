@@ -1,7 +1,7 @@
 import { GetServerSideProps, NextPage } from "next";
-import { Session, SessionObject } from "../../types/session";
-import { requireAuthentication } from "../../utils/requireAuthentication";
-import { trpc } from "../../utils/trpc";
+import { Session, SessionObject } from "../../../types/session";
+import { requireAuthentication } from "../../../utils/requireAuthentication";
+import { trpc } from "../../../utils/trpc";
 
 const Tickets: NextPage<SessionObject> = ({ currentSession: { user } }) => {
   const { data } = trpc.useQuery(["ticketRouter.getAll"]);
