@@ -22,7 +22,11 @@ const TicketItem: FC<Props> = ({ ticket }) => {
         {new Date(ticket.createdAt).toLocaleString("en-US")}
       </th>
       <td className="py-4 px-6">{ticket.product}</td>
-      <td className="py-4 px-6 font-semibold text-green-600">
+      <td
+        className={`py-4 px-6 font-semibold ${
+          ticket.status === "NEW" ? "text-green-600" : "text-red-600"
+        }`}
+      >
         {ticket.status}
       </td>
       <td className="py-4 px-6 font-bold">

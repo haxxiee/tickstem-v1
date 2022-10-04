@@ -15,7 +15,7 @@ const Header: FC<unknown> = () => {
       </Link>
 
       {data ? (
-        <Headerbutton text={"Sign out"} signed={true} />
+        <Headerbutton text={"Log out"} signed={true} />
       ) : (
         <Headerbutton text={"Sign in"} signed={false} />
       )}
