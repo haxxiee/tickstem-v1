@@ -6,7 +6,7 @@ const Header: FC<unknown> = () => {
   const { data } = useSession();
 
   return (
-    <div className="flex justify-between items-center my-5">
+    <div className="flex justify-between items-center mt-5 mb-14">
       <div className="text-xl font-extrabold text-slate-600">TICKSTEM</div>
 
       {data ? (

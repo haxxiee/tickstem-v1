@@ -1,19 +1,23 @@
 import { GetServerSideProps, NextPage } from "next";
 import { useState } from "react";
-// import Loading from "../../../components/Loading";
 import { trpc } from "../../utils/trpc";
+import { useRouter } from "next/router";
 
 import { Session, SessionObject } from "../../types/session";
 import { requireAuthentication } from "../../utils/requireAuthentication";
+import BackButton from "../../components/BackButton";
 
 const NewTicket: NextPage<SessionObject> = ({ currentSession: { user } }) => {
   const createTicket = trpc.useMutation(["ticketRouter.createTicket"]);
+  const router = useRouter();
 
   const [product, setProduct] = useState("iPhone");
   const [description, setDescription] = useState("");
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (description.length < 3) return;
 
     createTicket.mutateAsync({
       userId: user.id,
@@ -22,15 +26,17 @@ const NewTicket: NextPage<SessionObject> = ({ currentSession: { user } }) => {
     });
 
     setDescription("");
+    router.push("/dashboard/tickets");
   };
 
   console.log(product, description);
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <h1 className="text-3xl">CREATE NEW TICKET</h1>
+      <BackButton url="/dashboard" />
+      <h1 className="text-3xl font-bold mt-10">CREATE NEW TICKET</h1>
       <p>Please fill out the form below</p>
-      <div className="w-full max-w-sm">
+      <div className="w-full max-w-sm mt-4">
         <div className="mb-6">
           <label
             className="block text-gray-500 font-bold mb-1 pr-4"
