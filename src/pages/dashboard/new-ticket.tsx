@@ -29,10 +29,10 @@ const NewTicket: NextPage<SessionObject> = ({ currentSession: { user } }) => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center mt-4">
       <h1 className="text-3xl font-bold mt-10">CREATE NEW TICKET</h1>
       <p>Please fill out the form below</p>
-      <div className="w-full max-w-sm mt-4">
+      <div className="w-full max-w-sm mt-10">
         <div className="mb-6">
           <label
             className="block text-gray-500 font-bold mb-1 pr-4"

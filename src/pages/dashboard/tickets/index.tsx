@@ -31,22 +31,6 @@ const Tickets: NextPage<SessionObject> = ({ currentSession: { user } }) => {
           })}
         </tbody>
       </table>
-
-      {/* <table className="table-auto w-full">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Product</th>
-            <th>Status</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {data?.map((ticket) => {
-            return <TicketItem key={ticket.id} ticket={ticket} />;
-          })}
-        </tbody>
-      </table> */}
     </div>
   );
 };
