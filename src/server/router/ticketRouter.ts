@@ -28,11 +28,15 @@ export const ticketRouter = createRouter()
   .query("getSingle", {
     input: z.object({
       ticketId: z.string(),
+      userId: z.string(),
     }),
     async resolve({ input, ctx }) {
-      const ticket = await ctx.prisma.ticket.findUnique({
+      const ticket = await ctx.prisma.ticket.findFirst({
         where: {
-          id: input.ticketId,
+          AND: {
+            id: input.ticketId,
+            userId: input.userId,
+          },
         },
       });
       return ticket;
