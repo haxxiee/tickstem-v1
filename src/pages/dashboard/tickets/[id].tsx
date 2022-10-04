@@ -29,8 +29,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     authOptions
   );
 
-  const user = session?.user;
+  if (!session?.user)
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
 
+  const user = session?.user;
   const id = context.params?.id?.toString();
 
   return { props: { id, user } };

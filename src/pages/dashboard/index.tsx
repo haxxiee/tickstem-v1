@@ -17,7 +17,7 @@ const Dashboard: NextPage<SessionObject> = ({ currentSession: { user } }) => {
       <h1 className="text-5xl leading-normal font-extrabold text-gray-700">
         DASHBOARD<span className="text-purple-300">/</span>
       </h1>
-      <h2 className="text-xl mb-20">Hi {user?.name}!</h2>
+      <h2 className="text-xl mb-20">Hi {user?.name}! Welcome to Tickstem.</h2>
       <Link href={"/dashboard/new-ticket"}>
         <button className="p-2 m-2 w-3/4 rounded-lg bg-slate-300">
           Create a ticket
