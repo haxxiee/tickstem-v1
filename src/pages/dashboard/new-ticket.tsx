@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 
 import { Session, SessionObject } from "../../types/session";
 import { requireAuthentication } from "../../utils/requireAuthentication";
-import BackButton from "../../components/BackButton";
 
 const NewTicket: NextPage<SessionObject> = ({ currentSession: { user } }) => {
   const createTicket = trpc.useMutation(["ticketRouter.createTicket"]);
@@ -29,11 +28,8 @@ const NewTicket: NextPage<SessionObject> = ({ currentSession: { user } }) => {
     router.push("/dashboard/tickets");
   };
 
-  console.log(product, description);
-
   return (
     <div className="flex flex-col justify-center items-center">
-      <BackButton url="/dashboard" />
       <h1 className="text-3xl font-bold mt-10">CREATE NEW TICKET</h1>
       <p>Please fill out the form below</p>
       <div className="w-full max-w-sm mt-4">

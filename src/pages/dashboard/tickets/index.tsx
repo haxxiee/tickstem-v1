@@ -1,5 +1,4 @@
 import { GetServerSideProps, NextPage } from "next";
-import BackButton from "../../../components/BackButton";
 import TicketItem from "../../../components/TicketItem";
 import { Session, SessionObject } from "../../../types/session";
 import { requireAuthentication } from "../../../utils/requireAuthentication";
@@ -10,7 +9,6 @@ const Tickets: NextPage<SessionObject> = ({ currentSession: { user } }) => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <BackButton url="/dashboard" />
       <h1 className="text-3xl font-bold mt-10">TICKETS</h1>
       <table className="w-full text-sm mt-10 text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

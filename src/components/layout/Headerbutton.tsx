@@ -16,7 +16,7 @@ const Headerbutton: FC<Props> = ({ text, signed }) => {
   };
   return (
     <button
-      className=" flex justify-center items-center p-2 px-3 rounded-md bg-slate-300"
+      className=" flex justify-center items-center py-1 px-3 rounded-md bg-purple-200"
       onClick={() => handleClick(signed)}
     >
       {text}
