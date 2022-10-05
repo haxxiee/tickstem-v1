@@ -1,4 +1,4 @@
-import type { NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import { unstable_getServerSession } from "next-auth";
 import { authOptions } from "../pages/api/auth/[...nextauth]";
@@ -26,7 +26,7 @@ const Home: NextPage = () => {
   );
 };
 
-export async function getServerSideProps(context: any) {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await unstable_getServerSession(
     context.req,
     context.res,
@@ -43,6 +43,6 @@ export async function getServerSideProps(context: any) {
   } else {
     return { props: {} };
   }
-}
+};
 
 export default Home;

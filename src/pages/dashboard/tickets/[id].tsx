@@ -4,7 +4,6 @@ import { unstable_getServerSession } from "next-auth";
 import { authOptions } from "../../api/auth/[...nextauth]";
 import { User } from "../../../types/session";
 import Loading from "../../../components/Loading";
-import { useEffect } from "react";
 
 interface Props {
   id: string;
