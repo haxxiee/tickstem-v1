@@ -1,4 +1,5 @@
 import { GetServerSideProps, NextPage } from "next";
+import Loading from "../../../components/Loading";
 import TicketItem from "../../../components/TicketItem";
 import { Session, SessionObject } from "../../../types/session";
 import { requireAuthentication } from "../../../utils/requireAuthentication";
@@ -6,6 +7,10 @@ import { trpc } from "../../../utils/trpc";
 
 const Tickets: NextPage<SessionObject> = ({ currentSession: { user } }) => {
   const { data } = trpc.useQuery(["ticketRouter.getAll"]);
+
+  if (!user) {
+    return <Loading />;
+  }
 
   return (
     <div className="flex flex-col justify-center items-center">

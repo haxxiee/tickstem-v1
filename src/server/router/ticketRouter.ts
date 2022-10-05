@@ -58,4 +58,20 @@ export const ticketRouter = createRouter()
       });
       return ticket;
     },
+  })
+  .mutation("closeTicket", {
+    input: z.object({
+      ticketId: z.string(),
+    }),
+    async resolve({ input, ctx }) {
+      const ticket = await ctx.prisma.ticket.update({
+        where: {
+          id: input.ticketId,
+        },
+        data: {
+          status: "CLOSED",
+        },
+      });
+      return ticket;
+    },
   });
