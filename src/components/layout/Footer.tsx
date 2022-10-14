@@ -17,7 +17,7 @@ const Footer = () => {
             fill="currentColor"
           ></path>
         </svg>
-        by Linus Foxell
+        by Linus.
       </div>
     </footer>
   );
